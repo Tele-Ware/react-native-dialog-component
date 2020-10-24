@@ -30,16 +30,16 @@ class DialogManager {
   destroy(): void {
     const dialog = this.dialogs.pop();
     setTimeout(() => {
-      dialog.destroy();
+      if (dialog) dialog.destroy();
     }, DESTROY_TIMEOUT);
   }
 
-  onDialogDismissed = (onDismissed?: Function = () => {}): void => {
+  onDialogDismissed = (onDismissed?: Function = () => { }): void => {
     onDismissed();
     this.destroy();
   }
 
-  update = (props: Object, callback?: Function = () => {}): void => {
+  update = (props: Object, callback?: Function = () => { }): void => {
     this.currentDialog.update(
       <DialogComponent
         {...props}
@@ -49,20 +49,20 @@ class DialogManager {
     );
   }
 
-  show = (props: Object, callback?: Function = () => {}): void => {
+  show = (props: Object, callback?: Function = () => { }): void => {
     this.add({
       ...props,
       show: true,
     }, callback);
   }
 
-  dismiss = (callback?: Function = () => {}): void => {
+  dismiss = (callback?: Function = () => { }): void => {
     this.update({
       show: false,
     }, callback);
   }
 
-  dismissAll = (callback?: Function = () => {}): void => {
+  dismissAll = (callback?: Function = () => { }): void => {
     this.dialogs.forEach(() => {
       this.dismiss(callback);
     });
