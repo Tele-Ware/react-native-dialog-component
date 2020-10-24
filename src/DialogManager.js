@@ -30,7 +30,7 @@ class DialogManager {
   destroy(): void {
     const dialog = this.dialogs.pop();
     setTimeout(() => {
-      if (dialog) dialog.destroy();
+      if (dialog !== undefined) dialog.destroy();
     }, DESTROY_TIMEOUT);
   }
 
