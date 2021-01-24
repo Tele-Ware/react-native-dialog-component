@@ -40,13 +40,14 @@ class DialogManager {
   }
 
   update = (props: Object, callback?: Function = () => { }): void => {
-    this.currentDialog.update(
-      <DialogComponent
-        {...props}
-        onDismissed={() => { this.onDialogDismissed(props.onDismissed); }}
-      />,
-      callback,
-    );
+    if (this.currentDialog)
+      this.currentDialog.update(
+        <DialogComponent
+          {...props}
+          onDismissed={() => { this.onDialogDismissed(props.onDismissed); }}
+        />,
+        callback,
+      );
   }
 
   show = (props: Object, callback?: Function = () => { }): void => {
